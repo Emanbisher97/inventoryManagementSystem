@@ -74,5 +74,17 @@ namespace inventoryManagementSystem
             }
             else { Console.WriteLine("The product is not found in the inventory"); }
         }
+
+        public void SearchForProduct()
+        {
+            Console.WriteLine("Enter product Name:");
+            string productName = Console.ReadLine();
+            int index = products.FindIndex(product => product.Name == productName);
+            if (index != -1)
+            {
+                Console.WriteLine(products.ElementAt(index).PrintProductInfo());
+            }
+            else { Console.WriteLine("The product is not found in the inventory"); }
+        }
     }
 }
