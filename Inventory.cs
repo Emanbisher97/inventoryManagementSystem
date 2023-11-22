@@ -10,7 +10,7 @@ namespace inventoryManagementSystem
     {
         List<Product> products = new List<Product>();
 
-        public int GetNewId()
+        private int GetNewId()
         {
             int id;
             if (products.Count == 0)
@@ -40,11 +40,28 @@ namespace inventoryManagementSystem
             Console.WriteLine("All products in inventory:");
             foreach (Product product in products)
             {
-                PrintProductInfo(product);
+                product.PrintProductInfo();
             }
         }
 
-        public string PrintProductInfo(Product product) => $"Prodcut Name is {product.Name}, Product Price is {product.Price}, product quntity is {product.Quantity}";
+        public void EditProduct()
+        {
+            Console.WriteLine("Enter product Name:");
+            string productName = Console.ReadLine();
+            int index = products.FindIndex(product => product.Name == productName);
+            if (index != -1)
+            {
+                Console.WriteLine("Enter new product Name:");
+                string newProductName = Console.ReadLine();
+                Console.WriteLine("Enter new product Price:");
+                decimal newProductPrice = decimal.Parse(Console.ReadLine());
+                Console.WriteLine("Enter new product Quantity:");
+                int newProductQuantity = int.Parse(Console.ReadLine());
+                products[index] = new Product(products[index].Id, newProductName, newProductPrice, newProductQuantity);
+            }
+            else { Console.WriteLine("The product is not found in the inventory"); }
+        }
+
         
     }
 }
