@@ -86,5 +86,10 @@ namespace inventoryManagementSystem
             }
             else { Console.WriteLine("The product is not found in the inventory"); }
         }
+
+        public void ExitApplication()
+        {
+            Environment.Exit(0);
+        }
     }
 }
