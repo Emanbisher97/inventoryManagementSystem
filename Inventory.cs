@@ -8,8 +8,11 @@ namespace inventoryManagementSystem
 {
     public class Inventory
     {
-        List<Product> products = new List<Product>();
+        public static List<Product> products;
 
+        public Inventory() {
+            products = new List<Product>();
+        }
         private int GetNewId()
         {
             int id;
@@ -40,7 +43,7 @@ namespace inventoryManagementSystem
             Console.WriteLine("All products in inventory:");
             foreach (Product product in products)
             {
-                product.PrintProductInfo();
+                Console.WriteLine(product.PrintProductInfo());
             }
         }
 

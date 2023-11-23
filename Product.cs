@@ -19,7 +19,7 @@ namespace inventoryManagementSystem
             Price = price;
             Quantity = quantity;
         }
-        public string PrintProductInfo() => $"Prodcut Name is {Name}, Product Price is {Price}, product quntity is {Quantity}";
+        public string PrintProductInfo() => $"Product Id {Id} : Prodcut Name is {Name}, Product Price is {Price}, product quntity is {Quantity}";
 
     }
 }
