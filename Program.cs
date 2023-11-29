@@ -21,7 +21,15 @@ try {
     {
         if (code == 1)
         {
-            inventory.AddProduct();
+            Console.WriteLine("Please Enter the Details for the product");
+            Console.WriteLine("Product Name:");
+            string productName = Console.ReadLine();
+            Console.WriteLine("Price:");
+            decimal productPrice = decimal.Parse(Console.ReadLine());
+            Console.WriteLine("Quantity:");
+            int productQuantity = int.Parse(Console.ReadLine());
+            Product p =new Product(productName, productPrice, productQuantity);
+            inventory.AddProduct(p);
         }
         else if (code == 2)
         {
@@ -29,19 +37,32 @@ try {
         }
         else if (code == 3)
         {
-            inventory.EditProduct();
+            Console.WriteLine("Enter product Name:");
+            string productName = Console.ReadLine();
+            Console.WriteLine("Enter new product Name:");
+            string newProductName = Console.ReadLine();
+            Console.WriteLine("Enter new product Price:");
+            decimal newProductPrice = decimal.Parse(Console.ReadLine());
+            Console.WriteLine("Enter new product Quantity:");
+            int newProductQuantity = int.Parse(Console.ReadLine());
+            Product newProduct = new Product(newProductName, newProductPrice, newProductQuantity);
+            inventory.EditProduct(productName, newProduct);
         }
         else if (code == 4)
         {
-            inventory.DeleteProduct();
+            Console.WriteLine("Enter product Name:");
+            string productName = Console.ReadLine();
+            inventory.DeleteProduct(productName);
         }
         else if (code == 5)
         {
-            inventory.SearchForProduct();
+            Console.WriteLine("Enter product Name:");
+            string productName = Console.ReadLine();
+            inventory.SearchForProduct(productName);
         }
         else if (code == 6)
         {
-            inventory.ExitApplication();
+            Environment.Exit(0);
         }
         Console.WriteLine("Select your option:");
         code = int.Parse(Console.ReadLine());

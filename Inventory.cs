@@ -16,7 +16,7 @@ namespace inventoryManagementSystem
         private int GetNewId()
         {
             int id;
-            if (products.Count == 0)
+            if (!products.Any())
                 id = 1;
             else
             {
@@ -24,16 +24,9 @@ namespace inventoryManagementSystem
             }
             return id;
         }
-        public void AddProduct()
+        public void AddProduct(Product product)
         {
-            Console.WriteLine("Please Enter the Details for the product");
-            Console.WriteLine("Product Name:");
-            string productName = Console.ReadLine();
-            Console.WriteLine("Price:");
-            decimal productPrice = decimal.Parse(Console.ReadLine());
-            Console.WriteLine("Quantity:");
-            int productQuantity = int.Parse(Console.ReadLine());
-            Product product = new Product(GetNewId(), productName, productPrice, productQuantity);
+            product.Id = GetNewId();
             products.Add(product);
             Console.WriteLine("The Product added successfully");
         }
@@ -47,28 +40,18 @@ namespace inventoryManagementSystem
             }
         }
 
-        public void EditProduct()
+        public void EditProduct(string productName, Product p)
         {
-            Console.WriteLine("Enter product Name:");
-            string productName = Console.ReadLine();
             int index = products.FindIndex(product => product.Name == productName);
             if (index != -1)
             {
-                Console.WriteLine("Enter new product Name:");
-                string newProductName = Console.ReadLine();
-                Console.WriteLine("Enter new product Price:");
-                decimal newProductPrice = decimal.Parse(Console.ReadLine());
-                Console.WriteLine("Enter new product Quantity:");
-                int newProductQuantity = int.Parse(Console.ReadLine());
-                products[index] = new Product(products[index].Id, newProductName, newProductPrice, newProductQuantity);
+                products[index] = p;
             }
             else { Console.WriteLine("The product is not found in the inventory"); }
         }
 
-        public void DeleteProduct()
+        public void DeleteProduct(string productName)
         {
-            Console.WriteLine("Enter product Name:");
-            string productName = Console.ReadLine();
             int index = products.FindIndex(product => product.Name == productName);
             if (index != -1)
             {
@@ -78,21 +61,14 @@ namespace inventoryManagementSystem
             else { Console.WriteLine("The product is not found in the inventory"); }
         }
 
-        public void SearchForProduct()
+        public void SearchForProduct(string productName)
         {
-            Console.WriteLine("Enter product Name:");
-            string productName = Console.ReadLine();
             int index = products.FindIndex(product => product.Name == productName);
             if (index != -1)
             {
                 Console.WriteLine(products.ElementAt(index).PrintProductInfo());
             }
             else { Console.WriteLine("The product is not found in the inventory"); }
-        }
-
-        public void ExitApplication()
-        {
-            Environment.Exit(0);
         }
     }
 }
